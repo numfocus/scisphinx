@@ -43,7 +43,6 @@ def main():
             subname = root.replace(os.path.sep, '.')
             packages.append(subname)
             package_dir[subname] = root
-            #package_data[subname] = subdata
             package_data[subname] = files
             if '__init__.py' not in files:
                 initfile = os.path.join(root, '__init__.py')
