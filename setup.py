@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import os
 import sys
 import subprocess
@@ -9,18 +11,24 @@ VERSION = "0.1"
 
 def update_submodule(subpack):
     needs_init = 0 == len(os.listdir(subpack))
-    cmd = ['git', 'submodule', ('--init' if needs_init else ""), '--', subpack]
+    cmd = ['git', 'submodule', 'update', ]
+    if needs_init: 
+        cmd += ['--init', '--']
+    cmd += [subpack]
+    print " ".join(cmd)
     rtn = subprocess.call(cmd)
     return rtn
 
 
 def update_submodules():
+    rtn = subprocess.call(['git', 'submodule', 'sync', ])
+    rtn = subprocess.call(['git', 'submodule', 'update', ])
     subpackages = {}
     totrtn = 0
     conf = ConfigObj('.gitmodules')
     for value in conf.values():
         subpack = value['path']
-        rtn = update_submodule(subpack)
+        #rtn = update_submodule(subpack)
         totrtn += rtn
         if rtn != 0:
             print("failed to update {0}, skipping.".format(subpack))
@@ -40,7 +48,7 @@ def update_submodules():
 
 
 def main():
-    packages = ["scisphinx",],
+    packages = ["scisphinx",]
     package_dir = {"scisphinx": "scisphinx"},
     package_data = {'scisphinx': ['*.js', '*.css', '*.json']},
 
