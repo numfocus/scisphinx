@@ -7,3 +7,6 @@
 [submodule "bibstuff"]
 	path = bibstuff
 	url = git://github.com/matthew-brett/bibstuff.git
+[submodule "sphinxcontrib-bibtex"]
+	path = sphinxcontrib-bibtex
+	url = git://github.com/mcmtroffaes/sphinxcontrib-bibtex.git
