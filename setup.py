@@ -20,9 +20,6 @@ def update_submodules():
     conf = ConfigObj('.gitmodules')
     for value in conf.values():
         subpack = value['path']
-        # FIXME remove this once ipython/nbconvert#73 has been merged in
-        if subpack == 'nbconvert':
-            continue
         has_setup = 'setup.py' in os.listdir(subpack)
         if has_setup:
             print("setup.py found for {0}.".format(subpack))
