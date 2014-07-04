@@ -372,7 +372,7 @@ function bibtex_js_draw() {
   $(".bibtex_template").hide();
   
   // only display Bibtex entries if there is a source to read from and a target to write to
-  if ($("#bibtex_input").length() && $("#bibtex_display").length()) {
+  if ($("#bibtex_input").length && $("#bibtex_display").length) {
     (new BibtexDisplay()).displayBibtex($("#bibtex_input").val(), $("#bibtex_display"));
   }
 }
